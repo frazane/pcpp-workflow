@@ -1,0 +1,14 @@
+\begin{table*}
+    \caption{This is a table. Add something here.}
+    \renewcommand{\arraystretch}{1.1} 
+    \begin{tabular*}{\hsize}{@{\extracolsep\fill}l lllll@{}}
+        \topline
+        & $T$ & $T_d$ & $P$ & $RH$ & $r$\\ 
+        \midline
+        Unconstrained & 21 & 9 & 24 & 63 & 55 \\ 
+        Architecture constrained & 35 & 17 & 37 & 26 & 10 \\ 
+        Loss constrained & 48 & 96 & 28 & 39 & 60 \\ 
+        Offline constrained & 27 & 9 & 42 & 3 & 6 \\ 
+        \\ 
+   \end{tabular*}
+\end{table*}

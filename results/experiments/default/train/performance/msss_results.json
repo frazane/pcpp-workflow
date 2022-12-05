@@ -1,0 +1,32 @@
+{
+    "air_temperature":{
+        "architecture_constrained":0.6116213799,
+        "loss_constrained":0.605532527,
+        "offline_constrained":0.6109067202,
+        "unconstrained":0.6144156456
+    },
+    "dew_point_temperature":{
+        "architecture_constrained":0.4980186224,
+        "loss_constrained":0.489839077,
+        "offline_constrained":0.4926512837,
+        "unconstrained":0.5019058585
+    },
+    "surface_air_pressure":{
+        "architecture_constrained":0.9982777238,
+        "loss_constrained":0.9982805252,
+        "offline_constrained":0.9982916713,
+        "unconstrained":0.9982862473
+    },
+    "relative_humidity":{
+        "architecture_constrained":0.4433442354,
+        "loss_constrained":0.4283673167,
+        "offline_constrained":0.4180402756,
+        "unconstrained":0.4435859919
+    },
+    "water_vapor_mixing_ratio":{
+        "architecture_constrained":0.4740254879,
+        "loss_constrained":0.4640747309,
+        "offline_constrained":0.4534113407,
+        "unconstrained":0.4704345465
+    }
+}

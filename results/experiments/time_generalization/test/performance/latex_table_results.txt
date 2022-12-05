@@ -1,0 +1,15 @@
+\begin{table*}
+    \caption{This is a table. Add something here.}
+    \renewcommand{\arraystretch}{1.1} 
+    \begin{tabular*}{\hsize}{@{\extracolsep\fill}l lllll lllll@{}}
+        \topline
+        &\multicolumn{2}{c}{$T$} & \multicolumn{2}{c}{$T_d$} & \multicolumn{2}{c}{$P$} & \multicolumn{2}{c}{$RH$} & \multicolumn{2}{c}{$r$}\\ 
+        \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11} 
+        & MAE & MSSS & MAE & MSSS & MAE & MSSS & MAE & MSSS & MAE & MSSS \\ 
+        Unconstrained & 1.483 & 0.519 & 1.454 & 0.508 & 0.998 & 0.998 & 8.735 & 0.251 & 0.836 & 0.372 \\ 
+        Architecture constrained & 1.476 & 0.526 & 1.457 & 0.509 & 0.984 & 0.998 & 8.822 & 0.235 & 0.878 & 0.315 \\ 
+        Loss constrained & 1.467 & 0.529 & 1.394 & 0.535 & 0.994 & 0.998 & 8.786 & 0.247 & 0.834 & 0.372 \\ 
+        Offline constrained & 1.480 & 0.521 & 1.447 & 0.511 & 0.983 & 0.998 & 9.012 & 0.205 & 0.873 & 0.316 \\ 
+        \\ 
+   \end{tabular*}
+\end{table*}
