@@ -1,0 +1,9 @@
+.dev/
+.snakemake/
+.vscode/
+logs/
+results/data_partition/
+results/preprocess/
+results/train/
+results/tune
+slurm/
