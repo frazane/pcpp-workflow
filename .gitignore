@@ -7,3 +7,5 @@ results/preprocess/
 results/train/
 results/tune
 slurm/
+
+**/__pycache__
