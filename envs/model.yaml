@@ -1,0 +1,12 @@
+name: model
+channels:
+  - conda-forge
+  - pytorch
+  - defaults
+dependencies:
+  - python=3.9
+  - dask
+  - xarray
+  - zarr
+  - scikit-learn
+  - pytorch

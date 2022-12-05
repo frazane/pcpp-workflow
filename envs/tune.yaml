@@ -1,0 +1,14 @@
+name: tune
+channels:
+  - conda-forge
+  - pytorch
+  - defaults
+dependencies:
+  - python=3.9
+  - dask
+  - xarray
+  - pytorch
+  - pip
+  - pip:
+      - ray[tune]
+      - hyperopt
