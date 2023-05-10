@@ -1,0 +1,14 @@
+.dev/
+.snakemake/
+.vscode/
+logs/
+results/data_partition/
+results/preprocess/
+results/train/
+results/tune
+results/figures
+results/experiments
+slurm/
+local/
+
+**/__pycache__

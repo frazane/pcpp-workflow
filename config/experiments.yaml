@@ -1,0 +1,84 @@
+experiments:
+  # generic experiments (do not have their own notebook)
+  default:
+    approaches:
+      - unconstrained
+      - architecture_constrained
+      - loss_constrained
+      - offline_constrained
+    splits: [0, 1, 2, 3]
+    seeds: [100, 200, 300]
+
+  no_loss_weights:
+    approaches:
+      - unconstrained
+      - architecture_constrained
+      - loss_constrained
+      - offline_constrained
+    param_override:
+      loss.trainable: False
+    splits: [0, 1, 2, 3]
+    seeds: [100, 200, 300]
+
+
+  data_efficiency:
+    approaches:
+      - unconstrained
+      - architecture_constrained
+      - loss_constrained
+      - offline_constrained
+    param_runs:
+      - { data.reduction: 1.0,    net.l1:  256, net.l2:  256, net.embedding_size: 6, fit.lr:  0.007,  fit.batch_size:  512}
+      - { data.reduction: 0.2,    net.l1:  64, net.l2:  64, net.embedding_size: 3, fit.lr:  0.004,  fit.batch_size:  64}
+      - { data.reduction: 0.05,   net.l1:  64, net.l2:  32, net.embedding_size: 3, fit.lr:  0.0035, fit.batch_size:  64}
+      - { data.reduction: 0.01,  net.l1:  32, net.l2:  32, net.embedding_size: 3, fit.lr:  0.003,  fit.batch_size:  64}
+    param_override:
+      fit.max_epochs: 50
+      fit.patience: 5
+    splits: [0, 1, 2, 3]
+    seeds: [100, 200, 300]
+
+  time_generalization:
+    approaches:
+      - unconstrained
+      - architecture_constrained
+      - loss_constrained
+      - offline_constrained
+    param_override:
+      data.train_season: ["SON", "DJF", "MAM"]
+      data.test_season: ["JJA"]
+      net.l1: 64
+      net.l2: 64
+      net.embedding_size: 5
+      fit.lr: 0.002
+      fit.batch_size: 256
+      fit.max_epochs: 15
+      fit.patience: 5
+    splits: [0, 1, 2, 3]
+    seeds: [100, 200, 300]
+
+  # parameter-specific experiments (have their own notebooks)
+  loss_alpha:
+    approaches:
+      - loss_constrained
+    param_grid:
+      loss.alpha: [0., 0.2, 0.5, 0.8, 0.9, 0.95, 0.99, 0.995, 0.999, 0.9999, 0.99999]
+    splits: [0]
+    seeds: [10]
+
+  data_reduction_consistency:
+    approaches:
+      - unconstrained
+      - architecture_constrained
+      - loss_constrained
+    param_override:
+      data.reduction: 0.001
+      net.l1:  32
+      net.l2:  32
+      net.embedding_size: 3
+      fit.lr:  0.001
+      fit.batch_size:  16
+      fit.max_epochs: 30
+      fit.patience: 5
+    splits: [0, 1, 2, 3]
+    seeds: [100, 200, 300]

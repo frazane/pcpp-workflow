@@ -1,0 +1,34 @@
+plotting:
+  rcparams:
+    savefig.facecolor: "#ffffff"
+    savefig.dpi: 300
+    font.size: 13
+
+  var_long_names:
+    air_temperature: "Air temperature"
+    dew_point_temperature: "Dew point temperature"
+    surface_air_pressure: "Surface pressure"
+    relative_humidity: "Relative Humidity"
+    water_vapor_mixing_ratio: "Mixing ratio"
+
+  var_short_names:
+    air_temperature: "$T$"
+    dew_point_temperature: "$T_d$"
+    surface_air_pressure: "$P$"
+    relative_humidity: "$RH$"
+    water_vapor_mixing_ratio: "$r$"
+
+  var_units:
+    air_temperature: "°C"
+    dew_point_temperature: "°C"
+    surface_air_pressure: "hPa"
+    relative_humidity: "%"
+    water_vapor_mixing_ratio: "g kg$^{-1}$"
+
+  approach_names:
+    unconstrained: "Unconstrained"
+    architecture_constrained: "Architecture constrained"
+    loss_constrained: "Loss constrained"
+    offline_constrained: "Offline constrained"
+
+  approach_colors: ["#57B1FF", "#D81B60", "#FFC107", "#07846F"]

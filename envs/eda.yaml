@@ -1,0 +1,20 @@
+name: eda
+channels:
+  - conda-forge
+  - pyviz
+dependencies:
+  - python=3.10
+  - dask
+  - jupyter
+  - jupyterlab_code_formatter
+  - pandas
+  - seaborn
+  - xarray
+  - zarr
+  - matplotlib
+  - scikit-learn
+  - cartopy
+  - datashader=0.14.2
+  - pip
+  - pip:
+      - dieboldmariano

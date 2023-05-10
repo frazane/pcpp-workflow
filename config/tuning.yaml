@@ -1,0 +1,151 @@
+tuning:
+  threads: 30
+
+  global_config: &global_config
+    num_samples: 100
+    max_concurrent_trials: 10
+    cpus_per_trial: 2
+    ray_results_dir: "logs/tune"
+    time_attr: "training_iteration"
+    max_t: 30
+    grace_period: 20
+    resume: "AUTO"
+
+  default_search_space: &default_search_space
+    net.l1:
+      _target_: choice
+      categories: [64, 128, 256]
+    net.l2:
+      _target_: choice
+      categories: [64, 128, 256]
+    net.embedding_size:
+      _target_: choice
+      categories: [4, 5, 6]
+    fit.lr:
+      _target_: loguniform
+      lower: 0.0001
+      upper: 0.1
+    fit.batch_size:
+      _target_: choice
+      categories: [512, 1024, 2048]
+
+  reduced_search_space: &reduced_search_space
+    net.l1:
+      _target_: choice
+      categories: [64, 128]
+    net.l2:
+      _target_: choice
+      categories: [64, 128]
+    net.embedding_size:
+      _target_: choice
+      categories: [4, 5, 6]
+    fit.lr:
+      _target_: loguniform
+      lower: 0.0001
+      upper: 0.1
+    fit.batch_size:
+      _target_: choice
+      categories: [4096]
+
+
+  small_search_space: &small_search_space
+    net.l1:
+      _target_: choice
+      categories: [16, 32, 64]
+    net.l2:
+      _target_: choice
+      categories: [16, 32, 64]
+    net.embedding_size:
+      _target_: choice
+      categories: [2, 3, 4]
+    fit.lr:
+      _target_: loguniform
+      lower: 0.0001
+      upper: 0.1
+    fit.batch_size:
+      _target_: choice
+      categories: [32, 64, 128, 256]
+
+
+  default:
+    <<: *global_config
+    search_space:
+      <<: *default_search_space
+
+  reduced_default:
+    <<: *global_config
+    search_space:
+      <<: *reduced_search_space
+
+  data_reduction_0.1:
+    <<: *global_config
+    num_samples: 100
+    max_t: 30
+    grace_period: 20
+    search_space:
+      <<: *small_search_space
+    override:
+      data.reduction: 0.1
+
+  data_reduction_0.01:
+    <<: *global_config
+    num_samples: 100
+    max_t: 30
+    grace_period: 20
+    search_space:
+      <<: *small_search_space
+    override:
+      data.reduction: 0.01
+
+  data_reduction_0.001:
+    <<: *global_config
+    num_samples: 100
+    max_t: 40
+    grace_period: 20
+    search_space:
+      <<: *small_search_space
+      net.l1:
+        _target_: choice
+        categories: [16, 32]
+      net.l2:
+        _target_: choice
+        categories: [16, 32]
+    override:
+      data.reduction: 0.001
+
+
+  time_generalization:
+    <<: *global_config
+    num_samples: 50
+    max_t: 30
+    grace_period: 15
+    search_space:
+      <<: *default_search_space
+      net.l1:
+        _target_: choice
+        categories: [64]
+      net.l2:
+        _target_: choice
+        categories: [64]
+      fit.batch_size:
+        _target_: choice
+        categories: [256, 512]
+    override:
+      data.train_season: ["SON", "DJF", "MAM"]
+      data.test_season: ["JJA"]
+
+
+  default_small:
+    <<: *global_config
+    search_space:
+      <<: *default_search_space
+      net.l1:
+        _target_: choice
+        categories: [32]
+      net.l2:
+        _target_: choice
+        categories: [32]
+      net.embedding_size:
+        _target_: choice
+        categories: [3]
+

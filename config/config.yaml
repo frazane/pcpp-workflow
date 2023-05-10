@@ -1,0 +1,78 @@
+logging:
+  level: DEBUG
+  format: "%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s"
+  datefmt: "%Y-%m-%d %H:%M:%S"
+
+features:
+  - coe:air_temperature_ensavg
+  - coe:dew_point_temperature_ensavg
+  - coe:dew_point_depression_ensavg
+  - coe:surface_air_pressure_ensavg
+  - coe:relative_humidity_ensavg
+  - coe:water_vapor_mixing_ratio_ensavg
+  - coe:leadtime
+  - time:cos_hourofday
+  - time:sin_hourofday
+  - time:cos_dayofyear
+  - time:sin_dayofyear
+
+targets:
+  - obs:air_temperature
+  - obs:dew_point_temperature
+  - obs:surface_air_pressure
+  - obs:relative_humidity
+  - obs:water_vapor_mixing_ratio
+
+random_seeds: [100, 200, 300]
+
+devices: 1
+
+data_partitioning:
+  forecast_reference_time:
+    p: [0.6, 0.2, 0.2]
+    n_splits: 4
+
+# data
+data.reduction: # 0.1
+data.train_season: # ["SON","DJF","MAM"]
+data.test_season: # JJA
+
+# net
+net.l1: 256
+net.l2: 256
+net.embedding_size: 6
+net.constraint: False
+net.out_size: 5
+
+# loss
+loss.alpha: 0.0
+loss.mask: [True, True, True, True, True]
+loss.trainable: True 
+# loss.log_var_init: [0., 0., 0., 0., 0.]
+# loss.log_var_init: [1.5, 1.7, 0.5, 4.5, -0.5]
+
+# fit
+# fit.lr_patience: 4
+fit.lr: 0.0007
+fit.batch_size: 512
+fit.max_epochs: 25
+fit.patience: 5
+
+# approach-specific parameters
+unconstrained:
+  {}
+  # fit.lr: 0.005
+  # fit.batch_size: 1024
+architecture_constrained:
+  net.constraint: True
+  # fit.lr: 0.005
+  # fit.batch_size: 1024
+loss_constrained:
+  # fit.lr: 0.005
+  # fit.batch_size: 1024
+  loss.alpha: 0.995
+offline_constrained:
+  net.constraint: True
+  loss.mask: [True, True, True, False, False]
+  # fit.lr: 0.005
+  # fit.batch_size: 1024
